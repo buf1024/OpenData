@@ -351,6 +351,8 @@ class XueqiuAgent(RestAgent):
             jsonobj = json.loads(response)
             if jsonobj['error_code'] == 0:
                 result = []
+                if len(jsonobj['data']) <= 0:
+                    return None, jsonobj['error_description']
                 for rsp in jsonobj['data']['item']:
                     result.append( {
                         'symbol' : symbol,
